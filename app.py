@@ -14,19 +14,16 @@ create_button = st.sidebar.button("Word Cloud 생성")
 font_path = os.path.join(os.getcwd(), "customFonts/NanumGothic-Regular.ttf")
 
 st.header('Word Cloud')
-st.text('Word Cloud는 글에 포함된 명사의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다.')
-st.text('명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
+st.markdown('Word Cloud는 글에 포함된 명사의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다. 명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
 
 if create_button:
     kiwi = Kiwi()
 
-    # 텍스트를 형태소 분석하여 결과를 반환하는 함수
-    def analyze_text(text):
+    def analyze_text(text):  # 텍스트의 형태소 분석 결과를 반환
         result = kiwi.analyze(text)
         return result
 
-    # 형태소 분석 결과에서 명사를 추출하는 함수
-    def extract_nouns(text):
+    def extract_nouns(text):  # 형태소 분석 결과에서 명사를 추출
         nouns = []
         result = analyze_text(text)
         for token, pos, _, _ in result[0][0]:
@@ -36,7 +33,7 @@ if create_button:
 
     nouns = extract_nouns(text)
 
-    words = [n for n in nouns if len(n) > 1] # 단어의 길이가 1개인 것은 제외
+    words = [n for n in nouns if len(n) > 1]  # 단어의 길이가 1개인 것은 제외
 
     c = Counter(words) # 단어별 빈도수 형태의 딕셔너리 데이터를 구함
     wc = WordCloud(font_path=font_path, background_color = 'white', width=400, height=400, 
