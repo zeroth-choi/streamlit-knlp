@@ -1,9 +1,3 @@
-# https://zziii.tistory.com/entry/kiwi키위-형태소-분석기-설치
-# https://youtu.be/Ie6AXnnb44g?si=rQ98awkjx3m1Us7O
-# https://dschloe.github.io/python/2023/05/streamlit_korean_fonts/
-# https://stackoverflow.com/questions/18837262/convert-python-dict-into-a-dataframe
-# https://rfriend.tistory.com/281  :  sorting index of dataframe in descending order 
-
 from kiwipiepy import Kiwi
 from wordcloud import WordCloud
 from collections import Counter
@@ -20,7 +14,8 @@ create_button = st.sidebar.button("Word Cloud 생성")
 font_path = os.path.join(os.getcwd(), "customFonts/NanumGothic-Regular.ttf")
 
 st.header('Word Cloud')
-st.text('글에 포함된 단어의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법')
+st.text('Word Cloud는 글에 포함된 명사의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다.')
+st.text('명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
 
 if create_button:
     kiwi = Kiwi()
@@ -39,12 +34,11 @@ if create_button:
                 nouns.append(token)
         return nouns
 
-    # 명사 추출
     nouns = extract_nouns(text)
 
     words = [n for n in nouns if len(n) > 1] # 단어의 길이가 1개인 것은 제외
 
-    c = Counter(words) # 위에서 얻은 words를 처리하여 단어별 빈도수 형태의 딕셔너리 데이터를 구함
+    c = Counter(words) # 단어별 빈도수 형태의 딕셔너리 데이터를 구함
     wc = WordCloud(font_path=font_path, background_color = 'white', width=400, height=400, 
                scale=2.0, max_font_size=250, max_words=408)
     gen = wc.generate_from_frequencies(c)
