@@ -15,7 +15,7 @@ font_path = os.path.join(os.getcwd(), "customFonts/NanumGothic-Regular.ttf")
 
 st.header('Word Cloud')
 st.markdown('Word Cloud는 글에 포함된 명사의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다.')
-st.markdown('왼쪽에서 입력창에 긴 글을 입력하고 **Word Cloud 생성** 버튼을 누르면 Word Cloud가 생성되고 이미지를 다운로드할 수 있습니다.명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
+st.markdown('왼쪽에서 입력창에 긴 글을 입력하고 **Word Cloud 생성** 버튼을 누르면 Word Cloud와 명사들의 빈도표가 생성되고 이미지를 다운로드할 수 있습니다.명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
 
 if create_button:
     kiwi = Kiwi()
