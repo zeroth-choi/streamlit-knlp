@@ -14,7 +14,7 @@ create_button = st.sidebar.button("Word Cloud 생성")
 font_path = os.path.join(os.getcwd(), "customFonts/NanumGothic-Regular.ttf")
 
 st.header('Word Cloud')
-st.markdown('Word Cloud는 글에 포함된 명사의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다.')
+st.markdown('Word Cloud는 글에 포함된 단어의 빈도에 따라 색과 크기를 다르게 하여 시각화하는 방법입니다.')
 st.markdown('왼쪽에서 입력창에 긴 글을 입력하고 **Word Cloud 생성** 버튼을 누르면 Word Cloud와 명사들의 빈도표가 생성되고 이미지를 다운로드할 수 있습니다.명사를 추출하는 기능이 완벽하지 않음을 이해해 주기 바랍니다.')
 
 if create_button:
@@ -36,7 +36,7 @@ if create_button:
 
     words = [n for n in nouns if len(n) > 1]  # 단어의 길이가 1개인 것은 제외
 
-    c = Counter(words) # 단어별 빈도수 형태의 딕셔너리 데이터를 구함
+    c = Counter(words) # 단어별 빈도의 딕셔너리
     wc = WordCloud(font_path=font_path, background_color = 'white', width=400, height=400, 
                scale=2.0, max_font_size=250, max_words=408)
     gen = wc.generate_from_frequencies(c)
@@ -50,7 +50,7 @@ if create_button:
 
     st.header('단어별 빈도')
     df = pd.DataFrame(c.items(), columns=['단어', '빈도']) 
-    st.dataframe(df.sort_values(by=['빈도'], axis=0, ascending=False))
+    st.dataframe(df.sort_values(by=['빈도'], axis=0, ascending=False), hide_index=True)
     
     # 성공 문구 
     st.sidebar.success("생성됨!")
