@@ -7,6 +7,12 @@ import os
 import pandas as pd
 import streamlit as st
 
+# Configure Streamlit page settings
+st.set_page_config(
+    page_title="Word Cloud",
+    layout="wide",  # Page layout option
+)
+
 st.sidebar.title('Word Cloud 생성하기')
 text = st.sidebar.text_area('긴 글을 입력하세요')
 create_button = st.sidebar.button("Word Cloud 생성")
